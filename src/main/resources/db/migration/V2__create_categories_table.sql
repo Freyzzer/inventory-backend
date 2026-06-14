@@ -1,0 +1,8 @@
+CREATE TABLE categories (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(120) NOT NULL UNIQUE,
+    description VARCHAR(500),
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at DATETIME(6) NOT NULL,
+    updated_at DATETIME(6) NOT NULL
+);
