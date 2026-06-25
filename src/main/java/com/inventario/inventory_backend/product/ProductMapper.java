@@ -15,8 +15,8 @@ final class ProductMapper {
 	}
 
 	static void updateEntity(Product product, ProductRequest request) {
-		product.setSku(request.sku().trim());
-		product.setName(request.name().trim());
+		product.setSku(request.sku() != null ? request.sku().trim() : null);
+		product.setName(request.name() != null ? request.name().trim() : null);
 		product.setDescription(request.description());
 		product.setUnitPrice(request.unitPrice());
 		product.setStockQuantity(request.stockQuantity());

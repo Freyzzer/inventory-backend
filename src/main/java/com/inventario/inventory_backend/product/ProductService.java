@@ -78,7 +78,9 @@ public class ProductService {
 	@Transactional
 	public ProductResponse update(Long id, ProductRequest request, User currentUser) {
 		Product product = findActiveProduct(id, currentUser.getCompany().getId());
-		ensureSkuAvailableForUpdate(request.sku(), id, currentUser.getCompany().getId());
+		if (request.sku() != null && !request.sku().isBlank()) {
+			ensureSkuAvailableForUpdate(request.sku(), id, currentUser.getCompany().getId());
+		}
 		ensureCategoryExists(request.categoryId(), currentUser.getCompany().getId());
 		ProductMapper.updateEntity(product, request);
 		return ProductMapper.toResponse(product);
