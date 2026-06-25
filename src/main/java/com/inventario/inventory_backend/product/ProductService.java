@@ -65,7 +65,10 @@ public class ProductService {
 
 	@Transactional
 	public ProductResponse create(ProductRequest request, User currentUser) {
-		ensureSkuAvailable(request.sku(), currentUser.getCompany().getId());
+		if (request.sku() !=null && !request.sku().isBlank())
+		{
+			ensureSkuAvailable(request.sku(), currentUser.getCompany().getId());
+		}
 		ensureCategoryExists(request.categoryId(), currentUser.getCompany().getId());
 		Product product = ProductMapper.toEntity(request);
 		product.setCompany(currentUser.getCompany());
