@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 
 public record ProductRequest(
-		@NotBlank(message = "El SKU es obligatorio")
 		@Size(max = 80, message = "El SKU no puede superar 80 caracteres")
 		String sku,
 
